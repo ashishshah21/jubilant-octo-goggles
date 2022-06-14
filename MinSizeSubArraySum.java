@@ -13,20 +13,18 @@ class MinSizeSubArraySum {
     //look at one element at a time else look at 2 elements ....till you look at arr.length() at a time
     int startwindow = 0;
     int endwindow = 0;
-    int comparesum = 0;
-    int maxsum = 0;
     int windowsum = 0;
     int initialsum = 0;
     //initially startwindow = 0 and end window = 0 ; then 0 -1 ; 0-2...1-1, 1-2...
     for (int windowlength = 0; windowlength < arr.length; windowlength++) {
       initialsum = initialsum + arr[windowlength];
       windowsum = initialsum;
-      for ( startwindow = 0; startwindow < arr.length - windowlength; startwindow++) {
-        endwindow = startwindow+windowlength;
-        windowsum = windowsum - arr[endwindow] + arr[startwindow];
-       // comparesum = Math.max(maxsum, windowsum);
-        if (windowsum >= S)
-           return windowlength;
+      for ( startwindow = 0; startwindow < arr.length - windowlength -1 ; startwindow++) {
+        endwindow = startwindow+windowlength+1;
+        windowsum = windowsum + arr[endwindow] - arr[startwindow];
+        if (windowsum >= S) { 
+           return (endwindow-startwindow);
+        }
                                                                                         
     
        } 
